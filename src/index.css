@@ -1,5 +1,4 @@
 html, body, #app {
-  background-color: greenyellow;
   margin: 0;
   height: 100%;
   width: 100%;
@@ -8,14 +7,28 @@ html, body, #app {
 .container {
   display: grid;
   padding: 50px;
-  max-width: 1000px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
-.trivia-board {
+.question {
+  padding: 20px 0 0 0;
+  text-align: center;
+}
+
+.list {
+  margin: 20px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, minmax(150px, auto));
+  grid-template-rows: repeat(2, minmax(80px, auto));
   grid-gap: 10px;
-  outline: 1px solid blue;
+  background-color: #fff;
+}
+.answerCard {
+  width: 400px;
+  padding: 20px 0;
+  align-self: center;
+  justify-self: center;
+  text-align: center;
+  outline: 1px solid red;
 }
