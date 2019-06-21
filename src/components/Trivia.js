@@ -2,19 +2,13 @@ import React, { Component } from 'react'
 import { fetchQuestionData } from '../utils/api'
 import Question from './Question'
 
-function questionData({ fetchQuestionData }) {
-
-}
-
 export default class Trivia extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      answers: [],
       question: null,
       rightAnswer: null,
       wrongAnswers: [],
-      type: null,
       difficulty: null,
       category: null
     }
@@ -23,12 +17,10 @@ export default class Trivia extends Component {
   componentDidMount() {
     fetchQuestionData()
       .then(question => {
-        console.log('CDM', question)
         this.setState({
           question: question.question,
           rightAnswer: question.correct_answer,
           wrongAnswers: question.incorrect_answers,
-          type: question.type,
           difficulty: question.difficulty,
           category: question.category
         })
@@ -37,12 +29,16 @@ export default class Trivia extends Component {
   }
 
   render() {
-    // Do you have to pass answers []?
+    console.log('state', this.state)
     const { question, rightAnswer, wrongAnswers, type, difficulty, category } = this.state
+    console.log('triv', rightAnswer)
     return (
       <React.Fragment>
         <div className='trivia-board'>
-          <Question />
+          <Question
+            right={rightAnswer}
+            wrong={wrongAnswers} 
+          />
         </div>
       </React.Fragment>
     )
