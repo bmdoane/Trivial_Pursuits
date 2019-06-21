@@ -1,8 +1,17 @@
 import React from 'react'
-import { fetchQuestion } from '../utils/api'
+import { fetchQuestionData } from '../utils/api'
+
+console.log('here', fetchQuestionData())
+function QuestionGrid({ fetchQuestionData }) {
+  // const { category } = fetchQuestion
+  return (
+    <div></div>
+  )
+}
 
 export default function Question() {
   return (
-    <p>Hello</p>
+    <QuestionGrid />
   )
 }
+
