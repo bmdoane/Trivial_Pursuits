@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Question({ right, wrong }) {
+export default function Question({ question, right, wrong }) {
 
   function mix() {
     let possibleAnswers = wrong
@@ -13,6 +13,7 @@ export default function Question({ right, wrong }) {
   // Returning answer array, next post to grid.
 
   function QuestionGrid(props) {
+    const question = props.question
     const answers = props.allAnswers
     const listAnswers = answers.map((answer, index) =>
       <div className="answerCard" key={index}>
@@ -20,12 +21,18 @@ export default function Question({ right, wrong }) {
       </div>
     )
     return (
-      <div className="list">{listAnswers}</div>
+      <React.Fragment>
+        <div className="question">{question}</div>
+        <div className="list">{listAnswers}</div>
+      </React.Fragment>
     )
   }
 
   return (
-    <QuestionGrid allAnswers={allAnswers} />
+    <QuestionGrid
+      question={question}
+      allAnswers={allAnswers}
+    />
   )
 }
 

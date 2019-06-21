@@ -34,8 +34,9 @@ export default class Trivia extends Component {
     console.log('triv', rightAnswer)
     return (
       <React.Fragment>
-        <div className='trivia-board'>
+        <div>
           <Question
+            question={question}
             right={rightAnswer}
             wrong={wrongAnswers} 
           />

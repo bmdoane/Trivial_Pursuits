@@ -1,5 +1,4 @@
 html, body, #app {
-  background-color: greenyellow;
   margin: 0;
   height: 100%;
   width: 100%;
@@ -12,9 +11,9 @@ html, body, #app {
   margin: 0 auto;
 }
 
-.trivia-board {
-  display: grid;
-  background-color: blue;
+.question {
+  padding: 20px 0 0 0;
+  text-align: center;
 }
 
 .list {
