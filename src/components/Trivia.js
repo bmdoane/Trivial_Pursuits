@@ -15,13 +15,7 @@ export default class Trivia extends Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
-  // Logic if answer text = rightAnswer cl correct, else uncorrect
-  handleClick = (e) => {
-    // console.log('hc', this.state)
-    (e.target.textContent === this.state.rightAnswer) ? console.log('true') : console.log('false')
-  }
-
-  componentDidMount() {
+  newQuestion = () => {
     fetchQuestionData()
       .then(question => {
         this.setState({
@@ -32,7 +26,17 @@ export default class Trivia extends Component {
           category: question.category
         })
       })
+  }
 
+  // Logic if answer text = rightAnswer cl correct, else uncorrect
+  handleClick = (e) => {
+    (e.target.textContent === this.state.rightAnswer) ? console.log('true') : console.log('false')
+    console.log('hc', this.state)
+    this.newQuestion()
+  }
+
+  componentDidMount() {
+    this.newQuestion()
   }
 
   render() {
