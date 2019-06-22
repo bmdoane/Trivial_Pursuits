@@ -25,10 +25,10 @@ html, body, #app {
   background-color: #fff;
 }
 .answerCard {
-  width: 400px;
+  /* width: 400px;
   padding: 20px 0;
   align-self: center;
   justify-self: center;
   text-align: center;
-  outline: 1px solid red;
+  outline: 1px solid red; */
 }

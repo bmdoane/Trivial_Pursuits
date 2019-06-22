@@ -32,6 +32,7 @@ export default class Trivia extends Component {
   handleClick = (e) => {
     (e.target.textContent === this.state.rightAnswer) ? console.log('true') : console.log('false')
     console.log('hc', this.state)
+    // Would like to add function to announce correct/incorrect, time delay for 3 seconds and refresh
     this.newQuestion()
   }
 
