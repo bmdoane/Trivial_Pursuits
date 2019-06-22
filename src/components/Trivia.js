@@ -12,6 +12,13 @@ export default class Trivia extends Component {
       difficulty: null,
       category: null
     }
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  // Logic if answer text = rightAnswer cl correct, else uncorrect
+  handleClick = (e) => {
+    // console.log('hc', this.state)
+    (e.target.textContent === this.state.rightAnswer) ? console.log('true') : console.log('false')
   }
 
   componentDidMount() {
@@ -29,8 +36,9 @@ export default class Trivia extends Component {
   }
 
   render() {
+    console.log('this', this)
     console.log('state', this.state)
-    const { question, rightAnswer, wrongAnswers, type, difficulty, category } = this.state
+    const { question, rightAnswer, wrongAnswers } = this.state
     console.log('triv', rightAnswer)
     return (
       <React.Fragment>
@@ -38,7 +46,8 @@ export default class Trivia extends Component {
           <Question
             question={question}
             right={rightAnswer}
-            wrong={wrongAnswers} 
+            wrong={wrongAnswers}
+            handleClick={this.handleClick}
           />
         </div>
       </React.Fragment>
