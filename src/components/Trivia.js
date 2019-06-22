@@ -12,9 +12,10 @@ export default class Trivia extends Component {
       difficulty: null,
       category: null
     }
+    this.handleClick = this.handleClick.bind(this)
   }
 
-  componentDidMount() {
+  newQuestion = () => {
     fetchQuestionData()
       .then(question => {
         this.setState({
@@ -25,12 +26,24 @@ export default class Trivia extends Component {
           category: question.category
         })
       })
+  }
 
+  // Logic if answer text = rightAnswer cl correct, else uncorrect
+  handleClick = (e) => {
+    (e.target.textContent === this.state.rightAnswer) ? console.log('true') : console.log('false')
+    console.log('hc', this.state)
+    // Would like to add function to announce correct/incorrect, time delay for 3 seconds and refresh
+    this.newQuestion()
+  }
+
+  componentDidMount() {
+    this.newQuestion()
   }
 
   render() {
+    console.log('this', this)
     console.log('state', this.state)
-    const { question, rightAnswer, wrongAnswers, type, difficulty, category } = this.state
+    const { question, rightAnswer, wrongAnswers } = this.state
     console.log('triv', rightAnswer)
     return (
       <React.Fragment>
@@ -38,7 +51,8 @@ export default class Trivia extends Component {
           <Question
             question={question}
             right={rightAnswer}
-            wrong={wrongAnswers} 
+            wrong={wrongAnswers}
+            handleClick={this.handleClick}
           />
         </div>
       </React.Fragment>

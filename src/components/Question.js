@@ -1,6 +1,18 @@
 import React from 'react'
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
-export default function Question({ question, right, wrong }) {
+const useStyles = makeStyles(theme => ({
+  button: {
+    margin: theme.spacing(1),
+  },
+  input: {
+    display: 'none',
+  },
+}));
+
+export default function Question({ question, right, wrong, handleClick }) {
+  const classes = useStyles();
 
   function mix() {
     let possibleAnswers = wrong
@@ -10,15 +22,20 @@ export default function Question({ question, right, wrong }) {
   let allAnswers = mix()
   console.log('all', allAnswers)
 
-  // Returning answer array, next post to grid.
-
   function QuestionGrid(props) {
+    console.log('props', props)
     const question = props.question
     const answers = props.allAnswers
     const listAnswers = answers.map((answer, index) =>
-      <div className="answerCard" key={index}>
-        {answer}
-      </div>
+      <Button
+        variant="contained"
+        color="primary"
+        className={classes.button}
+        key={index}
+        onClick={handleClick}
+        >
+          {answer}
+      </Button>
     )
     return (
       <React.Fragment>
