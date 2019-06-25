@@ -1,18 +1,6 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-
-const useStyles = makeStyles(theme => ({
-  button: {
-    margin: theme.spacing(1),
-  },
-  input: {
-    display: 'none',
-  },
-}));
 
 export default function Question({ question, right, wrong, handleClick }) {
-  const classes = useStyles();
 
   function mix() {
     let possibleAnswers = wrong
@@ -27,15 +15,13 @@ export default function Question({ question, right, wrong, handleClick }) {
     const question = props.question
     const answers = props.allAnswers
     const listAnswers = answers.map((answer, index) =>
-      <Button
-        variant="contained"
-        color="primary"
-        className={classes.button}
+      <button
+        className="answerCard"
         key={index}
         onClick={handleClick}
-        >
-          {answer}
-      </Button>
+      >
+        {answer}
+      </button>
     )
     return (
       <React.Fragment>
