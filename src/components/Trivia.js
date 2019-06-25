@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { fetchQuestionData } from '../utils/api'
 import Question from './Question'
+import Header from './Header'
 
 export default class Trivia extends Component {
   constructor(props) {
@@ -10,9 +11,13 @@ export default class Trivia extends Component {
       rightAnswer: null,
       wrongAnswers: [],
       difficulty: null,
-      category: null
+      category: null,
+      rightTally: 0,
+      wrongTally: 0
     }
     this.handleClick = this.handleClick.bind(this)
+    this.handleIncrement = this.handleRight.bind(this)
+    this.handleDecrement = this.handleWrong.bind(this)
   }
 
   newQuestion = () => {
@@ -28,10 +33,16 @@ export default class Trivia extends Component {
       })
   }
 
-  // Logic if answer text = rightAnswer cl correct, else uncorrect
+  handleRight = () => {
+    this.setState({ rightTally: this.state.rightTally + 1 })
+  }
+
+  handleWrong = () => {
+    this.setState({ wrongTally: this.state.wrongTally + 1 })
+  }
+
   handleClick = (e) => {
-    (e.target.textContent === this.state.rightAnswer) ? console.log('true') : console.log('false')
-    console.log('hc', this.state)
+    (e.target.textContent === this.state.rightAnswer) ? this.handleRight() : this.handleWrong();
     // Would like to add function to announce correct/incorrect, time delay for 3 seconds and refresh
     this.newQuestion()
   }
@@ -41,22 +52,23 @@ export default class Trivia extends Component {
   }
 
   render() {
-    console.log('this', this)
-    console.log('state', this.state)
-    const { question, rightAnswer, wrongAnswers } = this.state
-    console.log('triv', rightAnswer)
+    console.log('trivState', this.state)
+    const { category, rightTally, wrongTally, question, rightAnswer, wrongAnswers } = this.state
+    console.log('trivRA', rightAnswer)
     return (
       <React.Fragment>
-        <div>
-          <Question
-            question={question}
-            right={rightAnswer}
-            wrong={wrongAnswers}
-            handleClick={this.handleClick}
-          />
-        </div>
+        <Header
+          category={category}
+          rightTally={rightTally}
+          wrongTally={wrongTally}
+        />
+        <Question
+          question={question}
+          right={rightAnswer}
+          wrong={wrongAnswers}
+          handleClick={this.handleClick}
+        />
       </React.Fragment>
     )
   }
 }
-

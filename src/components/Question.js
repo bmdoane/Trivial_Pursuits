@@ -8,10 +8,8 @@ export default function Question({ question, right, wrong, handleClick }) {
     return possibleAnswers
   }
   let allAnswers = mix()
-  console.log('all', allAnswers)
 
   function QuestionGrid(props) {
-    console.log('props', props)
     const question = props.question
     const answers = props.allAnswers
     const listAnswers = answers.map((answer, index) =>

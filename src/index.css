@@ -11,6 +11,29 @@ html, body, #app {
   margin: 0 auto;
 }
 
+.headContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.cat {
+  grid-column: 1 / 2;
+  align-self: center;
+  justify-self: start;
+  /* outline: 1px solid red; */
+}
+
+.tally {
+  grid-column: 2 / 3;
+  align-self: center;
+  justify-self: end;
+  /* outline: 1px solid green */
+}
+
+.rTally {
+  padding-right: 15px;
+}
+
 .question {
   padding: 20px 0 0 0;
   text-align: center;
