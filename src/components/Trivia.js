@@ -24,7 +24,7 @@ export default class Trivia extends Component {
     fetchQuestionData()
       .then(question => {
         this.setState({
-          question: question.question,
+          question: question.question.replace(/&#(\d+);/g, function (match, match2) { return String.fromCharCode(+match2); }).replace(/&quot;/g, '"'),
           rightAnswer: question.correct_answer,
           wrongAnswers: question.incorrect_answers,
           difficulty: question.difficulty,
